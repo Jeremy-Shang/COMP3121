@@ -1,0 +1,117 @@
+
+Homework 1
+
+z5158334
+
+
+
+
+1.  
+(a)
+In the first loop, compute all of the possible pair in arrayA and store in arrayB.
+This would case n(n-1)/2 steps and would be O(n^2).
+Next, write the second loop(not within the first one), go through all the pair and compute the result.
+This would case O(n^2) complexity. Now, add a loop(within the second loop) and do binary search once.  
+The result must be found. But the goal is find it twice so that it could indicate there are at least two pair
+matching the result. Thus, in the first binary search, When the number is found, set -1 in that array slot.
+Then, do the binary search again. So far, the complexity of second loop would be O(n^2logn). If the anything is match, 
+there exist a number that can be written as the sum
+of squares of two number from A in two different ways.
+
+pseudo code:
+// first loop
+for i in array A:
+    j = i + 1
+    for j in array A:
+        result = (i^2) + (j^2)
+        store result in to array B      // O(n^2)
+// second loop
+for i in array A:                       // n times
+    j = i + 1                           // n times
+    for j in array A:                   // n^2 times
+        result = (i^2) + (j^2)          // n^2 times
+        binary_search(result,B)         // n^2 * log2n times. 
+                                        // if result is found, set the corresponding slots -1
+                                        // now array B becomes new_B
+        binary_search(result,new_B)     // n^2 * log2n times. if result is found again, success
+                                    
+                                        // T(n) = 2n + 2n^2 + 2n^2log2n
+                                        // complexity: O(n^2logn)
+
+
+// second step
+merge_sort()
+
+
+
+// third step
+
+
+
+
+
+
+
+
+(b)The same way as (a). Instead of using binary search. Hashtable could be apply and
+its time complexity would be O(1).
+Thus, the time complexity for whole program would be O(n^2)?
+// first loop
+for i in array A:
+    j = i + 1
+    for j in array A:
+        result = (i^2) + (j^2)
+        hashtable()                     // open hashtable using modulo to generate key
+                                        // complexity: O(n^2)
+// second loop
+for i in array A:                       // n times
+    j = i + 1                           // n times
+    for j in array A:                   // n^2 times
+        result = (i^2) + (j^2)          // n^2 times
+        search_hashtable()              // O(1)
+                                        // find result in the open hash table
+                                        // if there are two number with same index 
+                                        // and same value on the linked list
+                                        // success
+                                        // complexity: O(n^2)
+
+
+
+
+2. 一袋子里面全都是螺栓和螺母,不同大小,设计算法把螺栓拧上螺母O(logn)
+
+
+
+3.
+
+
+
+4.
+
+
+
+5.
+(a)
+f(n) = (log2(n))^2
+g(n) = 2log2(n^(log2(n)))
+    =>  2 * (log2(n))^2
+According to the definition of exact asymptotic behavior,
+when n->infine, the ratio of two function is constant. Thus, f(n) = theta(g(n))
+
+
+
+(b)
+    f(n) = n^10 and g(n) = 2^(n^(1/10))
+    Taking logarithms for both equation. Get:
+    logf(n) = 10*logn
+    logg(n) = n^(1/10)log2
+    Knowing the fact that, for each b > 1 and x > 0, having that logb(n) = O(n^x)
+    and the fact that, for each r > 1 and d > 0, having n^d = O(r^n)
+it could be concluded that the exponential has a faster growing rate than the logarithms.
+Thus, f(n) = O(g(n)) 
+
+
+(c) (read definition)
+The definition fail for f(n), thus either of this two
+logg(n) = logn
+logg(n) = logn + (-1)^n * logn 
